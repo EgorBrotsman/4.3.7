@@ -31,7 +31,7 @@ body{
 	position: relative;
 }
 
-.search-frame{
+.search-repo{
 	font-size: 48px;
 	font-weight: bold;
 	width: 100%;
@@ -39,23 +39,28 @@ body{
 	padding: 15px;
 }
 
-.auto-com__item{
+.auto-com__list{
 	position: absolute;
 	width: 100%;
+}
+
+.auto-com__item{
+	cursor: pointer;
 	font-size: 25px;
 	padding: 7px 5px;
 	background-color: rgba(227, 227, 227, 1);
 	border: 1px solid black;
 }
 
-.added-framework__item{
+.added-repo__item{
+	border: 1px solid black;
 	padding: 8px 16px;
 	background-color: rgba(226, 123, 235, 1);
 	display: flex;
 	justify-content: space-between;
 }
 
-.delete-frame{
+.delete-repo{
 	cursor: pointer;
 	margin: auto 0;
 	overflow: hidden;
@@ -66,17 +71,18 @@ body{
 	border: none;
 }
 
-.delete-frame__span{
+.delete-repo__span-left{
 	display: inline-block;
 	width: 100px;
 	height: 4px;
 	background-color: red;
-}
-
-.delete-frame__span_left{
 	transform: translate(-36px) rotate(43deg);
 }
 
-.delete-frame__span_right{
+.delete-repo__span-right{
+	display: inline-block;
+	width: 100px;
+	height: 4px;
+	background-color: red;
 	transform: translate(-40px) rotate(-42deg);
 }
