@@ -8,7 +8,6 @@
 
 body{
 	font-family: Arial, Helvetica, sans-serif;
-	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -46,6 +45,8 @@ body{
 
 .auto-com__item{
 	cursor: pointer;
+	text-overflow: ellipsis;
+	overflow: hidden;
 	font-size: 25px;
 	padding: 7px 5px;
 	background-color: rgba(227, 227, 227, 1);
@@ -58,6 +59,10 @@ body{
 	background-color: rgba(226, 123, 235, 1);
 	display: flex;
 	justify-content: space-between;
+}
+.added-repo__item-info{
+	max-width: 79%;
+	overflow: hidden;
 }
 
 .delete-repo{
