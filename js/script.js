@@ -68,6 +68,8 @@ const createElementInListRepo = (repo) => {
 	`;
 
 	listRepo.insertAdjacentHTML('afterbegin', repoCard);
+	listSearchRepo.innerHTML = "";
+	inputSearch.value = '';
 };
 //Удаление добавленного репозитория
 const deleteRepo = (e) => {
