@@ -8,9 +8,9 @@ let searchRepoArr;
 //Предотвращает слишком частое отправление заросов
 const debounce = (fn, debounceTime) => {
 	let timeout;
-	return function () {
+	return function (...args) {
 		const fnCall = () => {
-			fn.apply(this, arguments);
+			fn.apply(this, args);
 		};
 		clearTimeout(timeout);
 		timeout = setTimeout(fnCall, debounceTime);
@@ -18,9 +18,7 @@ const debounce = (fn, debounceTime) => {
 };
 //Запрос на получение репозиториев
 const getRepo = async (url, pageLimit, nameRepo) => {
-	url.searchParams.set("q", nameRepo);
-	url.searchParams.set("per_page", `${pageLimit}`);
-
+	url = `${url}?q=${nameRepo}&per_page=${pageLimit}`;
 	const response = await fetch(url);
 	const data = await response.json();
 	return data.items;
@@ -42,10 +40,10 @@ const createListSearch = (repos) => {
 };
 //Добавление найденого репозитория в список
 const addRepo = (e) => {
-	if (e.target.classList.value === "auto-com__item") {
-		let repo = searchRepoArr.find((el) => el.id == e.target.dataset.repoId);
-		console.log(repo);
-		console.log(e.target.dataset.repoId);
+	if (listSearchRepo.contains(e.target)) {
+		let repo = searchRepoArr.find(
+			(el) => el.id === parseInt(e.target.dataset.repoId)
+		);
 		createElementInListRepo(repo);
 	}
 };
@@ -58,7 +56,7 @@ const createElementInListRepo = (repo) => {
 				<p>Owner: ${repo.owner.login}</p>
 				<p>Stars: ${repo.stargazers_count}</p>
 			</div>
-			<button class="delete-repo">
+			<button class="delete-repo" type="button">
 				<span
 					class="delete-repo__span-left"
 				></span>
@@ -73,16 +71,16 @@ const createElementInListRepo = (repo) => {
 };
 //Удаление добавленного репозитория
 const deleteRepo = (e) => {
-	e.target.closest("div").remove();
+	e.target.closest(".added-repo__item").remove();
 }
 //Поиск репозитория
 function search(e) {
 	if (e.target.value.trim()) {
+		listSearchRepo.innerHTML = "";
 		getRepo(URL_REPO, 5, e.target.value).then((response) => {
 			searchRepoArr = response;
 			createListSearch(response);
 		});
-		listSearchRepo.innerHTML = "";
 	} else {
 		listSearchRepo.innerHTML = "";
 	}

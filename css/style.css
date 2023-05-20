@@ -39,6 +39,7 @@ body{
 }
 
 .auto-com__list{
+	z-index: 3;
 	position: absolute;
 	width: 100%;
 }
